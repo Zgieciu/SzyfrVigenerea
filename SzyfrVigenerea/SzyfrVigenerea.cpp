@@ -5,9 +5,19 @@
 
 using namespace std;
 
+char tabLowercase[26][26];
+char tabUppercase[26][26];
+
 //funkcja do szyfrowania, argumenty to tekst do zaszyfrowania i klucz szyfru, zwraca zaszyfrowany tekst
 string encryption(string text, string key) {
-  
+    for (int i = 0; i < text.length(); i++) {
+        if (text[i] >= 65 && text[i] <= 90) { // duże litery
+            text[i] = tabUppercase[text[i] - 65][key[i] - 65];
+        }
+        else if (text[i] >= 97 && text[i] <= 122) { // małe litery 
+            text[i] = tabLowercase[text[i] - 97][key[i] - 97];
+        }
+    }
 
     return text;
 }
@@ -22,12 +32,8 @@ string decryption(string text, string key) {
 int main()
 {
     setlocale(LC_CTYPE, "Polish");
-    int option;
+    int option, pom;
     string text, key;
-
-    string tabLowercase[26][26];
-    string tabUppercase[26][26];
-    int pom;
 
     for (int i = 0; i < 26; i++) {
         for (int j = 0; j < 26; j++) {
@@ -58,7 +64,12 @@ int main()
         do {
             cin >> option;
             if (option == 1) {
-                cout << "Wybrno szyfrowanie\n";                  
+                cout << "Wybrno szyfrowanie\n";  
+                cout << "\nPodaj tekst do zaszyfrowania:\n";
+                getline(cin >> ws, text);
+                cout << "\nPodaj klucz szufru:\n";
+                getline(cin >> ws, key);
+                text = encryption(text, key);
             }
 
             else if (option == 2) {
@@ -73,6 +84,10 @@ int main()
             else {
                 cout << "Wybierz opcje 1, 2 lub 3\n";
             }
+
+            cout << "\nTekst po przejściu przez szyfr Vigenere'a:" << endl;
+            cout << text << endl;
+
         } while (option != 1 && option != 2 && option != 3);
 
     } while (option != 3);
