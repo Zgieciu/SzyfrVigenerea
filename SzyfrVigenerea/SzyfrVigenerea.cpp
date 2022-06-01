@@ -86,7 +86,7 @@ int main()
                 cout << "Wybrno szyfrowanie\n";  
                 cout << "\nPodaj tekst do zaszyfrowania:\n";
                 getline(cin >> ws, text);
-                cout << "\nPodaj klucz szufru:\n";
+                cout << "\nPodaj klucz szyfru:\n";
                 getline(cin >> ws, key);
                 text = encryption(text, key);
             }
@@ -95,7 +95,7 @@ int main()
                 cout << "Wybrano deszyfrowanie\n";
                 cout << "\nPodaj tekst do odszyfrowania:\n";
                 getline(cin >> ws, text);
-                cout << "\nPodaj klucz szufru:\n";
+                cout << "\nPodaj klucz szyfru:\n";
                 getline(cin >> ws, key);
                 text = decryption(text, key);
             }
